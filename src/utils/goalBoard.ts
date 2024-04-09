@@ -1,6 +1,6 @@
 
 function goalBoard(n: number): number[][] {
-  const tiles: number[][] = Array.from({length: n}, () => Array(n));
+  let tiles: number[][] = Array.from({length: n}, () => Array(n));
 
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {

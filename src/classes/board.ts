@@ -17,7 +17,10 @@ class Board {
   // string representation of this board
   toString(): string {
     // PLS MODIFY
-    return this.tiles.map((row) => row.map((tile) => tile.toString().padStart(2, " ")).join(" ")).join("\n");
+    let boardSize = `${this.boardSize} \n`;
+    let board = this.tiles.map((row) => row.map((tile) => tile.toString().padStart(2, " ")).join(" ")).join("\n")
+
+    return boardSize + board;
   }
 
   // board dimension n
@@ -62,10 +65,7 @@ class Board {
 
   isGoal(): boolean {
     // PLS MODIFY
-    if (this.hamming() === 0) {
-      return true;
-    }
-    return false;
+    return this.hamming() === 0;
   }
 
   // does this board equal y?
@@ -141,10 +141,10 @@ class Board {
     const twin: Board = new Board(this.tiles.map((row) => [...row])); // create a copy of the tiles
 
     // Exchanging tiles on the 1st two rows
-    if (twin.tiles[0][0] === 0) { // exchange 2nd tile on first row and 1st tile on second row
+    if (twin.tiles[0][0] === 0) { // exchange 2nd tile on first row and 2nd tile on second row
       const temp = twin.tiles[0][1];
-      twin.tiles[0][1] = twin.tiles[1][0];
-      twin.tiles[1][0] = temp;
+      twin.tiles[0][1] = twin.tiles[1][1];
+      twin.tiles[1][1] = temp;
     } else if (twin.tiles[0][1] === 0) { // exchange 1st tile on first row and 1st tile on second row
       const temp = twin.tiles[0][0];
       twin.tiles[0][0] = twin.tiles[1][0];

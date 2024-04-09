@@ -29,6 +29,7 @@ console.log(`is Goal: ${sampleBoard1.isGoal()}`); // false
 console.log(`is Equal: ${sampleBoard1.equals(sampleBoard1_1)}`); // true
 console.log(`is Equal: ${sampleBoard1.equals(sampleBoard1_2)}`); // false
 console.log(`Neighbors: \n${sampleBoard1.neighbors().map((board) => board.toString()).join('\n ------- \n')}`);
+console.log(`------- \nTwin: \n${sampleBoard1.twin().toString()}`);
 console.log("=====================================");
 
 //----------------------------------------------------------------------------------------------------------------------------
@@ -55,6 +56,7 @@ console.log(`is Goal: ${sampleBoard2_2.isGoal()}`); // true
 console.log(`is Equal: ${sampleBoard2.equals(sampleBoard2_1)}`); // true
 console.log(`is Equal: ${sampleBoard2.equals(sampleBoard2_2)}`); // false
 console.log(`Neighbors: \n${sampleBoard2.neighbors().map((board) => board.toString()).join('\n ------- \n')}`);
+console.log(`------- \nTwin: \n${sampleBoard2.twin().toString()}`);
 console.log("=====================================");
 
 //----------------------------------------------------------------------------------------------------------------------------
@@ -109,4 +111,5 @@ console.log(`is Goal: ${sampleBoard3.isGoal()}`); // true
 console.log(`is Equal: ${sampleBoard3.equals(sampleBoard3_1)}`); // true
 console.log(`is Equal: ${sampleBoard3.equals(sampleBoard3_2)}`); // false
 console.log(`Neighbors: \n${sampleBoard3.neighbors().map((board) => board.toString()).join('\n ------- \n')}`);
+console.log(`------- \nTwin: \n${sampleBoard3.twin().toString()}`);
 console.log("=====================================");
