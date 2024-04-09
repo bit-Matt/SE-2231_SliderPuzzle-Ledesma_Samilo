@@ -84,15 +84,78 @@ class Board {
   // all neighboring boards
   neighbors(): Board[] {
     // PLS MODIFY
-    
+    const neighbors: Board[] = [];
+    let blankRow: number = 0; // row index of the blank square
+    let blankCol: number = 0; // column index of the blank square
 
-    return [];
+    // Find the row and column index of the blank square
+    for (let i = 0; i < this.boardSize; i++) {
+      for (let j = 0; j < this.boardSize; j++) {
+        if (this.tiles[i][j] === 0) {
+          blankRow = i;
+          blankCol = j;
+          break;
+        }
+      }
+    }
+
+    // Generate neighbors by swapping the blank square with its adjacent tiles
+    // Swap with the tile above the blank square
+    if (blankRow > 0) {
+      const neighborTiles = this.tiles.map((row) => [...row]); // create a copy of the tiles
+      neighborTiles[blankRow][blankCol] = neighborTiles[blankRow - 1][blankCol];
+      neighborTiles[blankRow - 1][blankCol] = 0;
+      neighbors.push(new Board(neighborTiles));
+    }
+
+    // Swap with the tile below the blank square
+    if (blankRow < this.boardSize - 1) {
+      const neighborTiles = this.tiles.map((row) => [...row]); // create a copy of the tiles
+      neighborTiles[blankRow][blankCol] = neighborTiles[blankRow + 1][blankCol];
+      neighborTiles[blankRow + 1][blankCol] = 0;
+      neighbors.push(new Board(neighborTiles));
+    }
+
+    // Swap with the tile to the left of the blank square
+    if (blankCol > 0) {
+      const neighborTiles = this.tiles.map((row) => [...row]); // create a copy of the tiles
+      neighborTiles[blankRow][blankCol] = neighborTiles[blankRow][blankCol - 1];
+      neighborTiles[blankRow][blankCol - 1] = 0;
+      neighbors.push(new Board(neighborTiles));
+    }
+
+    // Swap with the tile to the right of the blank square
+    if (blankCol < this.boardSize - 1) {
+      const neighborTiles = this.tiles.map((row) => [...row]); // create a copy of the tiles
+      neighborTiles[blankRow][blankCol] = neighborTiles[blankRow][blankCol + 1];
+      neighborTiles[blankRow][blankCol + 1] = 0;
+      neighbors.push(new Board(neighborTiles));
+    }
+
+    return neighbors;
   }
 
   // a board that is obtained by exchanging any pair of tiles
   twin(): Board {
-    // PLS MODIFY
-    return new Board([[]]);
+    // PLS MODIFY\
+    const twin: Board = new Board(this.tiles.map((row) => [...row])); // create a copy of the tiles
+
+    // Exchanging tiles on the 1st two rows
+    if (twin.tiles[0][0] === 0) { // exchange 2nd tile on first row and 1st tile on second row
+      const temp = twin.tiles[0][1];
+      twin.tiles[0][1] = twin.tiles[1][0];
+      twin.tiles[1][0] = temp;
+    } else if (twin.tiles[0][1] === 0) { // exchange 1st tile on first row and 1st tile on second row
+      const temp = twin.tiles[0][0];
+      twin.tiles[0][0] = twin.tiles[1][0];
+      twin.tiles[1][0] = temp;
+    } else { // exchange 1st and 2nd tile on first row
+      const temp = twin.tiles[0][0];
+      twin.tiles[0][0] = twin.tiles[0][1];
+      twin.tiles[0][1] = temp;
+    }
+
+    return twin;
   }
 }
 

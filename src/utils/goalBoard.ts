@@ -15,6 +15,4 @@ function goalBoard(n: number): number[][] {
   return tiles;
 }
 
-console.log(goalBoard(3));
-
 export default goalBoard;
