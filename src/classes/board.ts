@@ -3,7 +3,7 @@ import goalBoard from "../utils/goalBoard";
 class Board {
   // create a board from an n-by-n array of tiles,
   // where tiles[row][col] = tile at (row, col)
-  private tiles: number[][] = [];
+  public tiles: number[][] = [];
   private goalBoardTiles: number [][];
   public boardSize: number = 0;
 

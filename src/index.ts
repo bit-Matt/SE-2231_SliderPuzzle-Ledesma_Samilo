@@ -2,7 +2,7 @@ import Solver from "./classes/solver";
 import Board from "./classes/board";
 import { readFileSync } from "fs";
 
-const fileName: string = "puzzle18.txt";
+const fileName: string = process.argv[2];
 
 const lines: string[] = readFileSync(`../puzzles/${fileName}`, "utf8").split(
   "\n"
@@ -28,19 +28,19 @@ lines.forEach((line, row) => {
 });
 
 const initial: Board = new Board(tiles);
-console.log(initial.toString());
+console.log(initial.toString() + "\n");
 
 // solve the puzzle
 const solver: Solver = new Solver(initial);
 
 // print solution to standard output
-if (!solver.isSolvable()) {
+if (solver.isSolvable() === false) {
   console.log("No solution possible");
 } else {
-  console.log("Minimum number of moves = " + solver.moves());
+  console.log("Minimum number of moves = " + solver.moves() + "\n");
   let solution = solver.solution()
     if (solution) {
-        solution.forEach(board => console.log(board.toString()))
+        solution.forEach(board => console.log(`${board.toString()} \n`))
     }
 
   // for (let board of solver.solution()) {
